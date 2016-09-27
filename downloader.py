@@ -25,14 +25,14 @@ def import_game_to_SQL(gid, dir_loc):
 		storedProcedure = "EXECUTE PitchFX.dbo.InsertGame_FromXML @gid = ?, @file_dir = ?"
 		values = [gid, dir_loc]
 		
-		print(storedProcedure)
-		print(gid)
-		print(dir_loc)
+		#print(storedProcedure)
+		#print(gid)
+		#print(dir_loc)
 
 		cursor.execute(storedProcedure, values)
 		connection.commit()
 		connection.close()
-		print("Successfully imported game {} to SQL Server database.".format(gid))
+		print("IMPORTED TO SQL: {}".format(gid))
 	except Exception as e:
 		print("Failed to import game {} from '{}': {}".format(gid, dir_loc, e))
 		pass
@@ -48,8 +48,8 @@ def download_file(dir_url, dir_loc, file_name, progress_bar=True):
 		#meta = u.info()
 
 		file_size = int(u.headers['Content-Length'])
-		if progress_bar: 
-			print("Downloading: {} Bytes: {}".format(file_name, file_size))
+		#if progress_bar: 
+		#	print("Downloading: {} Bytes: {}".format(file_name, file_size))
 		file_size_dl = 0
 		block_sz = 8192
 	
@@ -61,10 +61,10 @@ def download_file(dir_url, dir_loc, file_name, progress_bar=True):
 			file_size_dl += len(buffer)
 			f.write(buffer)
 			
-			if progress_bar:
-				status = r"%10d [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
-				status = status + chr(8)*(len(status)+1)
-				print(status),
+			#if progress_bar:
+			#	status = r"%10d [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
+			#	status = status + chr(8)*(len(status)+1)
+			#	print(status),
 
 		f.close()
 	except Exception as e:
@@ -75,7 +75,7 @@ def download_dir(dir_url, dir_loc, dir_name, file_name_pattern = "[0-9][0-9][0-9
 	dir_url = dir_url + dir_name
 	dir_loc = dir_loc + dir_name
 
-	print("Downloading: {} ".format(dir_name))
+	#print("Downloading: {} ".format(dir_name))
 	if not os.path.exists(dir_loc):
 		os.makedirs(dir_loc)
 
@@ -100,8 +100,8 @@ def download_game_files(dir_url):
 	except urllib.error.HTTPError as e:
 		pass
 	else:
-		print("DOWNLOADING GAME: {}".format(dir_url))
 		if not os.path.exists(dir_loc):
+			#print("DOWNLOADING GAME: {}".format(dir_url))
 			os.makedirs(dir_loc)
 			os.makedirs(dir_loc+"inning/")
 
@@ -110,6 +110,7 @@ def download_game_files(dir_url):
 			download_file(dir_url, dir_loc, "players.xml")
 			download_file(dir_url, dir_loc, "inning/inning_all.xml")
 			download_file(dir_url, dir_loc, "inning/inning_hit.xml")
+			print("DOWNLOADED GAME: {}".format(dir_url))
 			return dir_loc
 
 
@@ -127,8 +128,8 @@ def download_date_games(dir_url):
 			gid = link['href']
 			dir_loc = download_game_files(dir_url + gid)
 			if dir_loc is not None:
-				print((os.getcwd()+'\\'+dir_loc).replace('/', '\\'))
-				import_game_to_SQL(gid, (os.getcwd()+'\\'+dir_loc).replace('/', '\\'))
+				#print((os.getcwd()+'\\'+dir_loc).replace('/', '\\'))
+				import_game_to_SQL(gid.replace('/', ''), (os.getcwd()+'\\'+dir_loc).replace('/', '\\'))
 
 def main(argv):
 	gameday_url = "http://gd2.mlb.com/components/game/mlb/"
