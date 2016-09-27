@@ -1,24 +1,40 @@
+USE [PitchFX]
+GO
 
--- = 'gid_2016_03_05_anamlb_seamlb_1', @file_dir VARCHAR(1000) = 'C:\bin\pfx_MSSQL\data\year_2016\month_03\day_05\gid_2016_03_05_anamlb_seamlb_1\plays.xml';
+/****** Object:  StoredProcedure [dbo].[InsertGame_FromXML]    Script Date: 9/27/2016 6:49:02 PM ******/
+SET ANSI_NULLS ON
+GO
 
-CREATE PROCEDURE InsertGame_FromXML (
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[InsertGame_FromXML](
 	@gid VARCHAR(50),
 	@file_dir VARCHAR(1000)
 )
 AS
-DECLARE @xml XML, @QryStr VARCHAR(MAX);
+-- Requires file structure:
+--	-> @file_dir/
+--		-> linescore.xml
+--		-> players.xml
+--		-> plays.xml
+--		-> inning/
+--			-> inning_all.xml
+--			-> inning_hit.xml
 
-BEGIN TRY
+SET XACT_ABORT ON;
 BEGIN TRANSACTION
 	IF NOT EXISTS (SELECT * FROM game WHERE gid = @gid)
 	BEGIN
+		DECLARE @xml XML, @QryStr NVARCHAR(MAX);
+
 		SET @QryStr = '
-		SELECT @xml = BulkColumn
+		SELECT @XML_out = BulkColumn
 		FROM OPENROWSET(
 			BULK '''+@file_dir+'linescore.xml'+'''
 			, SINGLE_CLOB
 		) AS x;';
-		EXEC @QryStr;
+		EXECUTE sp_executesql @QryStr, N'@XML_out XML OUTPUT', @XML_out=@xml OUTPUT;
 
 		INSERT INTO team (id, abbreviation, file_code, city, name)
 		SELECT x.id, x.abbreviation, x.file_code, x.city, x.name
@@ -61,12 +77,12 @@ BEGIN TRANSACTION
 
 		-- Update game record w/ weather from plays.xml
 		SET @QryStr = '
-		SELECT @xml = BulkColumn
+		SELECT @XML_out = BulkColumn
 		FROM OPENROWSET(
 			BULK '''+@file_dir+'plays.xml'+'''
 			, SINGLE_CLOB
 		) AS x;';
-		EXEC @QryStr;
+		EXECUTE sp_executesql @QryStr, N'@XML_out XML OUTPUT', @XML_out=@xml OUTPUT;
 
 		DECLARE @temp INT, @condition VARCHAR(255), @wind VARCHAR(255);
 		SELECT 
@@ -80,12 +96,12 @@ BEGIN TRANSACTION
 		WHERE gid = @gid;
 
 		SET @QryStr = '
-		SELECT @xml = BulkColumn
+		SELECT @XML_out = BulkColumn
 		FROM OPENROWSET(
 			BULK '''+@file_dir+'players.xml'+'''
 			, SINGLE_CLOB
 		) AS x;';
-		EXEC @QryStr;
+		EXECUTE sp_executesql @QryStr, N'@XML_out XML OUTPUT', @XML_out=@xml OUTPUT;
 
 		-- Insert players that don't exist
 		INSERT INTO player (id, first_name, last_name, bats, throws)
@@ -137,12 +153,12 @@ BEGIN TRANSACTION
 
 		-- Insert atbat records
 		SET @QryStr = '
-		SELECT @xml = BulkColumn
+		SELECT @XML_out = BulkColumn
 		FROM OPENROWSET(
 			BULK '''+@file_dir+'inning\inning_all.xml'+'''
 			, SINGLE_CLOB
 		) AS x;';
-		EXEC @QryStr;
+		EXECUTE sp_executesql @QryStr, N'@XML_out XML OUTPUT', @XML_out=@xml OUTPUT;
 
 		INSERT INTO atbat (game_id, inning, num, b, s, o, start_tfs_zulu, batter, stand, b_height, pitcher, p_throws, [des], des_es, event_num, [event], event_es, home_team_runs, away_team_runs)
 		SELECT @gid AS game_id
@@ -290,26 +306,26 @@ BEGIN TRANSACTION
 
 		-- Add hit information
 		SET @QryStr = '
-		SELECT @xml = BulkColumn
+		SELECT @XML_out = BulkColumn
 		FROM OPENROWSET(
 			BULK '''+@file_dir+'inning\inning_hit.xml'+'''
 			, SINGLE_CLOB
 		) AS x;';
-		EXEC @QryStr;
+		EXECUTE sp_executesql @QryStr, N'@XML_out XML OUTPUT', @XML_out=@xml OUTPUT;
 
-		INSERT INTO hip ([des], x, y, batter, pitcher, [type], team, inning)
-		SELECT xt.xc.value('@des','VARCHAR(50)') AS [des]
-			,xt.xc.value('@x', 'FLOAT') AS x
-			,xt.xc.value('@y', 'FLOAT') AS y
-			,xt.xc.value('@batter', 'INT') AS batter
-			,xt.xc.value('@pitcher', 'INT') AS pitcher
-			,xt.xc.value('@type', 'VARCHAR(1)') AS [type]
-			,xt.xc.value('@team', 'VARCHAR(1)') AS team
-			,xt.xc.value('@inning', 'INT') AS inning
-		FROM @xml.nodes('/hitchart/hip') AS xt(xc);
+		--INSERT INTO hip ([des], x, y, batter, pitcher, [type], team, inning)
+		--SELECT xt.xc.value('@des','VARCHAR(50)') AS [des]
+		--	,xt.xc.value('@x', 'FLOAT') AS x
+		--	,xt.xc.value('@y', 'FLOAT') AS y
+		--	,xt.xc.value('@batter', 'INT') AS batter
+		--	,xt.xc.value('@pitcher', 'INT') AS pitcher
+		--	,xt.xc.value('@type', 'VARCHAR(1)') AS [type]
+		--	,xt.xc.value('@team', 'VARCHAR(1)') AS team
+		--	,xt.xc.value('@inning', 'INT') AS inning
+		--FROM @xml.nodes('/hitchart/hip') AS xt(xc);
 		END;
-	COMMIT TRANSACTION;
-END TRY
-BEGIN CATCH
-	ROLLBACK TRANSACTION;
-END CATCH;
+
+COMMIT TRANSACTION;
+GO
+
+
