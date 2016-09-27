@@ -5,8 +5,6 @@ from bs4 import BeautifulSoup, SoupStrainer
 
 __author__ = 'Spencer Bingol'
 
-def convert_datetodir(game_date):
-	return "year_" + str(game_date.year) + "/" + "month_" + ("0" + str(game_date.month))[-2:] + "/" + "day_" + ("0" + str(game_date.day))[-2:] + "/"
 
 def generate_daterange(start_date, end_date):
 	dt = start_date
@@ -14,7 +12,7 @@ def generate_daterange(start_date, end_date):
 	dates = []
 
 	while dt <= end_date:
-		dates.append(convert_datetodir(dt))
+		dates.append("year_" + str(dt.year) + "/" + "month_" + ("0" + str(dt.month))[-2:] + "/" + "day_" + ("0" + str(dt.day))[-2:] + "/")
 		dt += delta
 
 	return dates
@@ -112,14 +110,10 @@ def download_game_files(dir_url):
 			download_file(dir_url, dir_loc, "players.xml")
 			download_file(dir_url, dir_loc, "inning/inning_all.xml")
 			download_file(dir_url, dir_loc, "inning/inning_hit.xml")
-			#download_dir(dir_url, dir_loc, "pitchers/")
-			#download_dir(dir_url, dir_loc, "batters/")
 			return dir_loc
 
 
-def download_date_games(dir_url, import_bit):
-	#req = urllib.Request(dir_url)
-
+def download_date_games(dir_url):
 	try: 
 		response = urlopen(dir_url)
 	except:
@@ -132,7 +126,7 @@ def download_date_games(dir_url, import_bit):
 		if link['href'].startswith('gid_'):
 			gid = link['href']
 			dir_loc = download_game_files(dir_url + gid)
-			if dir_loc is not None and import_bit:
+			if dir_loc is not None:
 				print((os.getcwd()+'\\'+dir_loc).replace('/', '\\'))
 				import_game_to_SQL(gid, (os.getcwd()+'\\'+dir_loc).replace('/', '\\'))
 
@@ -141,17 +135,15 @@ def main(argv):
 	usage = 'Usage: downloader.py -s <yyyy-mm-dd> -e <yyyy-mm-dd> -i [0/1]'
 	
 	try:
-		opts, args = getopt.getopt(argv, "s:e:i:")
+		opts, args = getopt.getopt(argv, "s:e:")
 	except:
 		print(usage)
 		print("   -s: yyyy-mm-dd formatted date, the START DATE of the range to download.")
 		print("   -e: yyyy-mm-dd formatted date, the END DATE of the range to download.")
-		print("   -i: [0/1] bit value, the IMPORT option (should downloaded files also be imported to SQL?).")
 		sys.exit(2)
 
 	start_date = 0
 	end_date = 0
-	import_bit = -1
 	for opt, arg in opts:
 		if opt == '-s':
 			try:
@@ -165,28 +157,19 @@ def main(argv):
 			except:
 				print("Invalid end date. {}".format(usage))
 				sys.exit(3)
-		elif opt == '-i':
-			try:
-				if (int(arg) == 1): import_bit = True
-				elif (int(arg) == 0): import_bit = False
-			except:
-				print("Invalid import bit. {}".format(usage))
-				sys.exit(3)
 
-
-	if start_date == 0 or end_date == 0 or import_bit == -1:
+	if start_date == 0 or end_date == 0:
 		print("both bounds of date range, and import bit, required")
 		print(usage)
 		sys.exit(3)
 
 	print("Start Date: {}".format(start_date.strftime("%B %d, %Y")))
 	print("End Date: {}".format(end_date.strftime("%B %d, %Y")))
-	print("Import Bit: {}".format(import_bit))
 
 	dates = generate_daterange(start_date, end_date)
 	
 	for date_url in dates:
-		download_date_games(gameday_url + date_url, import_bit)
+		download_date_games(gameday_url + date_url)
 
 	sys.exit()
 
