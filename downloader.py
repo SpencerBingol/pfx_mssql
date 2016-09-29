@@ -1,15 +1,14 @@
 #!/usr/bin/python3
 
-import urllib.parse, urllib.error, os, re, sys, getopt, pypyodbc, queue, time
+import urllib.parse, urllib.error, os, re, sys, getopt, queue
 from urllib.request import urlopen
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup, SoupStrainer
-from multiprocessing.dummy import Pool
-import threading
+from HTTP_Manager import HTTP_Manager
+from SQL_Manager import SQL_Manager
 
 __author__ = 'Spencer Bingol'
-
-
+			
 def generate_daterange(start_date, end_date, gameday_url):
 	dt = start_date
 	delta = timedelta(days=1)
@@ -21,127 +20,29 @@ def generate_daterange(start_date, end_date, gameday_url):
 
 	return dates
 
-def import_game_to_SQL(gid, dir_loc):
-	try:
-		auto_commit = True
-		connection = pypyodbc.connect('Driver={SQL Server};Server=localhost\SQLEXPRESS;Database=PitchFX;Trusted_Connection=True', auto_commit)
-		cursor = connection.cursor()
-		
-		storedProcedure = "EXECUTE PitchFX.dbo.InsertGame_FromXML @gid = ?, @file_dir = ?"
-		values = [gid, dir_loc]
-
-		cursor.execute(storedProcedure, values)
-		connection.commit()
-		connection.close()
-		print("IMPORTED TO SQL: {}".format(gid))
-	except Exception as e:
-		print("Failed to import game {} from '{}': {}".format(gid, dir_loc, e))
-		pass
-
-def download_file(dir_url, dir_loc, file_name, progress_bar=True):
-	file_url = dir_url + file_name
-	file_loc = dir_loc + file_name
-
-	f = open(file_loc, 'wb')
-
-	try:
-		u = urlopen(file_url)
-
-		file_size = int(u.headers['Content-Length'])
-		file_size_dl = 0
-		block_sz = 8192
-	
-		while True:
-			buffer = u.read(block_sz)
-			if not buffer:
-				break
-
-			file_size_dl += len(buffer)
-			f.write(buffer)
-
-		f.close()
-	except Exception as e:
-		f.close()
-		print("Error trying to download [{}]: {}".format(file_url, e))
-
-def download_game_files(dir_url):
-	gid = dir_url.split('/')[-2]
-	dir_loc = "data/" + dir_url.split('/')[-5] + "/" + dir_url.split('/')[-4] + "/" + dir_url.split('/')[-3] + "/" + gid + "/"
-
-	try:
-		plays = urlopen(dir_url+"plays.xml")
-	except urllib.error.HTTPError as e:
-		pass
-	else:
-		if not os.path.exists(dir_loc):
-			os.makedirs(dir_loc)
-			os.makedirs(dir_loc+"inning/")
-
-			download_file(dir_url, dir_loc, "linescore.xml")
-			download_file(dir_url, dir_loc, "plays.xml")
-			download_file(dir_url, dir_loc, "players.xml")
-			download_file(dir_url, dir_loc, "inning/inning_all.xml")
-			download_file(dir_url, dir_loc, "inning/inning_hit.xml")
-			print("DOWNLOADED GAME: {}".format(dir_url))
-
-			return [gid.replace('/', ''), (os.getcwd()+'\\'+dir_loc).replace('/', '\\')]
-
-			#if dir_loc is not None:
-			#	pool = Pool(1)
-			#	result = pool.starmap(import_game_to_SQL, [(gid.replace('/', ''), (os.getcwd()+'\\'+dir_loc).replace('/', '\\'))])
-
-			#	return pool
-
-				#import_game_to_SQL(gid.replace('/', ''), (os.getcwd()+'\\'+dir_loc).replace('/', '\\'))
-
-
-def process_games(dir_url, games):
-	start_time = time.time()
-	g_urls = []
-	for gid in games:
-		g_urls.append(dir_url + gid)
-	
-	HTTP_pool = Pool(5)
-	results = HTTP_pool.map(download_game_files, g_urls)
-	
-	HTTP_pool.close()
-	HTTP_pool.join()
-
-	HTTP_time = time.time()
-
-	gids = []
-	dir_loc = []
-	for r in results:
-		if r is not None:
-			gids.append(r[0])
-			dir_loc.append(r[1])
-
-	SQL_pool = Pool(10)
-	results = SQL_pool.starmap(import_game_to_SQL, zip(gids, dir_loc))
-
-	SQL_pool.close()
-	SQL_pool.join()
-
-def download_date_games(dir_url):
-	try: 
-		response = urlopen(dir_url)
-	except:
-		print("Failed while attempting to open the location [{}]".format(dir_url))
-	
-	links = SoupStrainer('a')
-	soup = BeautifulSoup(response.read(), "html.parser", parse_only=links)
-
+def get_game_urls(daterange):
 	games = []
-	for link in soup:
-		if link['href'].startswith('gid_'):
-			games.append(link['href'])
-		
-	process_games(dir_url, games)	
 
+	for directory in daterange:
+		try: 
+			response = urlopen(directory)			
+		except: 
+			print("Failed while attempting to open the location [{}]".format(dir_url))
+
+		links = SoupStrainer('a')
+		soup = BeautifulSoup(response.read(), "html.parser", parse_only=links)
+
+		for link in soup:
+			if link['href'].startswith('gid_'):
+				games.append(directory + link['href'])
+
+	return games
 
 def main(argv):
 	gameday_url = "http://gd2.mlb.com/components/game/mlb/"
 	usage = 'Usage: downloader.py -s <yyyy-mm-dd> -e <yyyy-mm-dd>'
+	SQL_pool_size = 1
+	HTTP_pool_size  = 5
 	
 	try:
 		opts, args = getopt.getopt(argv, "s:e:")
@@ -176,10 +77,14 @@ def main(argv):
 	print("End Date: {}".format(end_date.strftime("%B %d, %Y")))
 
 	dates = generate_daterange(start_date, end_date, gameday_url)
+	games = get_game_urls(dates)
 
-	for date_url in dates:
-		print(date_url)
-		download_date_games(date_url)
+	q = queue.Queue()
+	SQL_thread = SQL_Manager(q, SQL_pool_size)
+	HTTP_thread = HTTP_Manager(q, games, HTTP_pool_size, SQL_pool_size)
+
+	SQL_thread.start()
+	HTTP_thread.start()
 
 	sys.exit()
 
