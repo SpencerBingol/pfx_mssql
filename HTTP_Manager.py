@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import threading, queue, os, itertools
+import threading, queue, itertools
 from multiprocessing.dummy import Pool
 from urllib.request import urlopen
 
@@ -45,35 +45,25 @@ class HTTP_Manager(threading.Thread):
 			print("Error trying to download [{}]: {}".format(url, e))
 
 	def get_game_files(self, game, q):
-		gid = game.split('/')[-2]
-		dir_loc = "data/" + game.split('/')[-5] + "/" + game.split('/')[-4] + "/" + game.split('/')[-3] + "/" + gid + "/"
+		gid = game.split('/')[-2][:-1]
+		#dir_loc = "data/" + game.split('/')[-5] + "/" + game.split('/')[-4] + "/" + game.split('/')[-3] + "/" + gid + "/"
 
 		try:
 			plays = urlopen(game+"plays.xml")
 		except urllib.error.HTTPError as e:
 			pass
 		else:
-			if not os.path.exists(dir_loc):
-				os.makedirs(dir_loc)
+			#if not os.path.exists(dir_loc):
+			#	os.makedirs(dir_loc)
 
-				linescore = self.download_file(game + "linescore.xml")
-				players = self.download_file(game + "players.xml")
-				inning_all = self.download_file(game + "inning/inning_all.xml")
+			linescore = self.download_file(game + "linescore.xml")
+			players = self.download_file(game + "players.xml")
+			inning_all = self.download_file(game + "inning/inning_all.xml")
 
-				linescore = linescore.split('>')[2]
-				inning_split = inning_all.split('>')
-				inning_split[1] = linescore
-				inning_all = '>'.join(inning_split)
+			linescore = linescore.split('>')[2]
+			inning_split = inning_all.split('>')
+			inning_split[1] = linescore
+			inning_all = '>'.join(inning_split)
 
-				playersLoc = dir_loc + 'players.xml'
-				pitchesLoc = dir_loc + 'pitches.xml'
-
-				with open(playersLoc, "w") as playersFile:
-					playersFile.write(players)
-
-				with open(pitchesLoc, "w") as pitchesFile:
-					pitchesFile.write(inning_all)
-
-				print("DOWNLOADED GAME: {}".format(game))
-				q.put([gid, (os.getcwd()+'\\'+playersLoc).replace('/', '\\'), (os.getcwd()+'\\'+pitchesLoc).replace('/', '\\')])
-	
+			print("DOWNLOADED GAME: {}".format(game))
+			q.put([gid, players, inning_all])

@@ -24,15 +24,15 @@ class Game_Importer(threading.Thread):
 			with pypyodbc.connect(cnx, auto_commit) as connection:
 				cursor = connection.cursor()
 			
-				storedProcedure = "EXECUTE PitchFX.dbo.sp_ImportPlayers @fileLoc = ?"
+				storedProcedure = "EXECUTE PitchFX.dbo.sp_ImportPlayers @xml = ?"
 				values = [player_data]
 				cursor.execute(storedProcedure, values)
 
-				storedProcedure = "EXECUTE PitchFX.dbo.sp_ImportGame @gid = ?, @fileLoc = ?"
+				storedProcedure = "EXECUTE PitchFX.dbo.sp_ImportGame @gid = ?, @xml = ?"
 				values = [gid, game_data]
 				cursor.execute(storedProcedure, values)
 
-				storedProcedure = "EXECUTE PitchFX.dbo.sp_ImportUmpires @gid = ?, @fileLoc = ?"
+				storedProcedure = "EXECUTE PitchFX.dbo.sp_ImportUmpires @gid = ?, @xml = ?"
 				values = [gid, player_data]
 				cursor.execute(storedProcedure, values)
 
