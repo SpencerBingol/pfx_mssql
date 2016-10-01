@@ -60,6 +60,7 @@ AS (
 		current_parameter_count = 0
 		for atbat in games.findall('.//atbat'):
 			atbat_num = atbat.attrib['num']
+
 			for pitch in atbat.findall('pitch'):
 				if current_parameter_count + 39 >= 2100:
 					pitch_withs[len(pitch_withs)-1] = pitch_withs[len(pitch_withs)-1][:-12] + """
@@ -71,9 +72,10 @@ AS (
 					pitch_values[len(pitch_values)-1].append(gid)
 					pitch_values.append([])
 					current_parameter_count = 0
+				
 				pitch_withs[len(pitch_withs)-1] = pitch_withs[len(pitch_withs)-1] + """	SELECT ? AS atbat_num, ? AS des, ? AS des_es, ? AS pid, ? AS type, ? AS tfs, ? AS tfs_zulu, ? AS x, ? AS y, ? AS event_num, ? AS sv_id, ? AS play_guid, ? AS start_speed, ? AS end_speed, ? AS sz_top, ? AS sz_bot, ? AS pfx_x, ? AS pfx_z, ? AS px, ? AS pz, ? AS x0, ? AS y0, ? AS z0, ? AS vx0, ? AS vy0, ? AS vz0, ? AS ax, ? AS ay, ? AS az, ? AS break_y, ? AS break_angle, ? AS break_length, ? AS pitch_type, ? AS type_confidence, ? AS zone, ? AS nasty, ? AS spin_dir, ? AS spin_rate
-		UNION ALL
-	"""
+	UNION ALL
+"""
 				pitch_values[len(pitch_values)-1].append(atbat_num)
 				pitch_values[len(pitch_values)-1].append(pitch.attrib['des'])
 				pitch_values[len(pitch_values)-1].append(pitch.attrib['des_es'])
@@ -88,7 +90,10 @@ AS (
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['sv_id'])
 				else:
 					pitch_values[len(pitch_values)-1].append('NULL')
-				pitch_values[len(pitch_values)-1].append(pitch.attrib['play_guid'])
+				if 'play_guid' in pitch.attrib:
+					pitch_values[len(pitch_values)-1].append(pitch.attrib['play_guid'])
+				else: 
+					pitch_values[len(pitch_values)-1].append('NULL')
 				if 'start_speed' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['start_speed'])
 				else :
