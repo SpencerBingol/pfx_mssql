@@ -41,7 +41,7 @@ def get_game_urls(daterange):
 def main(argv):
 	gameday_url = "http://gd2.mlb.com/components/game/mlb/"
 	usage = 'Usage: downloader.py -s <yyyy-mm-dd> -e <yyyy-mm-dd>'
-	SQL_pool_size = 1
+	SQL_pool_size = 5
 	HTTP_pool_size  = 5
 	
 	try:

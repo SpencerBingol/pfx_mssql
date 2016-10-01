@@ -45,7 +45,7 @@ class HTTP_Manager(threading.Thread):
 			print("Error trying to download [{}]: {}".format(url, e))
 
 	def get_game_files(self, game, q):
-		gid = game.split('/')[-2][:-1]
+		gid = game.split('/')[-2]
 		#dir_loc = "data/" + game.split('/')[-5] + "/" + game.split('/')[-4] + "/" + game.split('/')[-3] + "/" + gid + "/"
 
 		try:
