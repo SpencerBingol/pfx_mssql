@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import urllib.parse, urllib.error, os, re, sys, getopt, queue
+import urllib.parse, urllib.error, os, re, sys, getopt, queue, pypyodbc
 from urllib.request import urlopen
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup, SoupStrainer
@@ -22,7 +22,7 @@ def generate_daterange(start_date, end_date, gameday_url):
 
 def get_game_urls(daterange):
 	games = []
-
+	
 	for directory in daterange:
 		try: 
 			response = urlopen(directory)			
@@ -34,9 +34,22 @@ def get_game_urls(daterange):
 
 		for link in soup:
 			if link['href'].startswith('gid_'):
-				games.append(directory + link['href'])
+				games.append([directory + link['href'], link['href'].replace('/', '')])
 
-	return games
+	gid_exists = []
+	auto_commit = True
+	cnx = 'Driver={SQL Server};Server=localhost\SQLEXPRESS;Database=PitchFX;Trusted_Connection=True'
+	with pypyodbc.connect(cnx, auto_commit) as connection:
+		cursor = connection.cursor()
+		gids = [g[1] for g in games]
+
+		query = "SELECT gid FROM game WHERE gid IN ("
+		query = query + "?, "*len(gids)
+		query = query[:-2] + ")"
+
+		cursor.execute(query, gids)
+		gid_exists = cursor.fetchall()
+	return [g[0] for g in games if g[1] not in [e[0] for e in gid_exists]]
 
 def main(argv):
 	gameday_url = "http://gd2.mlb.com/components/game/mlb/"
@@ -78,6 +91,8 @@ def main(argv):
 
 	dates = generate_daterange(start_date, end_date, gameday_url)
 	games = get_game_urls(dates)
+	print("GAMES TO IMPORT: {}".format(len(games)))
+
 
 	q = queue.Queue()
 	SQL_thread = SQL_Manager(q, SQL_pool_size)

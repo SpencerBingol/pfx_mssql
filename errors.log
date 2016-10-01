@@ -276,3 +276,373 @@ Failed to import game gid_2015_09_01_seamlb_houmlb_1: name 'players_to_SQL' is n
 Failed to import game gid_2015_09_01_tbamlb_balmlb_1: name 'players_to_SQL' is not defined
 Failed to import game gid_2015_09_01_texmlb_sdnmlb_1: name 'players_to_SQL' is not defined
 Failed to import game gid_2015_09_01_wasmlb_slnmlb_1: name 'players_to_SQL' is not defined
+Failed to import game gid_2015_09_01_cinmlb_chnmlb_1: 'description'
+Failed to import game gid_2015_09_01_anamlb_oakmlb_1: 'description'
+Failed to import game gid_2015_09_01_chamlb_minmlb_1: 'description'
+Failed to import game gid_2015_09_01_arimlb_colmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 780 parameters were supplied')
+Failed to import game gid_2015_09_01_miamlb_atlmlb_1: 'description'
+Failed to import game gid_2015_09_01_detmlb_kcamlb_1: 'description'
+Failed to import game gid_2015_09_01_clemlb_tormlb_1: 'description'
+Failed to import game gid_2015_09_01_nyamlb_bosmlb_1: 'description'
+Failed to import game gid_2015_09_01_pitmlb_milmlb_1: 'description'
+Failed to import game gid_2015_09_01_seamlb_houmlb_1: 'description'
+Failed to import game gid_2015_09_01_sfnmlb_lanmlb_1: 'description'
+Failed to import game gid_2015_09_01_tbamlb_balmlb_1: 'description'
+Failed to import game gid_2015_09_01_texmlb_sdnmlb_1: 'description'
+Failed to import game gid_2015_09_01_wasmlb_slnmlb_1: 'description'
+Failed to import game gid_2015_09_01_chamlb_minmlb_1: 'description'
+Failed to import game gid_2015_09_01_cinmlb_chnmlb_1: 'description'
+Failed to import game gid_2015_09_01_anamlb_oakmlb_1: 'description'
+Failed to import game gid_2015_09_01_miamlb_atlmlb_1: 'description'
+Failed to import game gid_2015_09_01_nyamlb_bosmlb_1: 'description'
+Failed to import game gid_2015_09_01_clemlb_tormlb_1: 'description'
+Failed to import game gid_2015_09_01_detmlb_kcamlb_1: 'description'
+Failed to import game gid_2015_09_01_pitmlb_milmlb_1: 'description'
+Failed to import game gid_2015_09_01_sfnmlb_lanmlb_1: 'description'
+Failed to import game gid_2015_09_01_seamlb_houmlb_1: 'description'
+Failed to import game gid_2015_09_01_tbamlb_balmlb_1: 'description'
+Failed to import game gid_2015_09_01_texmlb_sdnmlb_1: 'description'
+Failed to import game gid_2015_09_01_wasmlb_slnmlb_1: 'description'
+Failed to import game gid_2015_09_01_anamlb_oakmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_cinmlb_chnmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_chamlb_minmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_detmlb_kcamlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_clemlb_tormlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_miamlb_atlmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_nyamlb_bosmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_pitmlb_milmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_sfnmlb_lanmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_tbamlb_balmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_seamlb_houmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_texmlb_sdnmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_01_wasmlb_slnmlb_1: ('HY000', 'Attempt to use a closed connection.')
+Failed to import game gid_2015_09_04_balmlb_tormlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_chamlb_kcamlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_atlmlb_wasmlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_clemlb_detmlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_arimlb_chnmlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_milmlb_cinmlb_1: 'home_team_runs'
+Failed to import game gid_2015_09_04_lanmlb_sdnmlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_minmlb_houmlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_nynmlb_miamlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_phimlb_bosmlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_pitmlb_slnmlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_tbamlb_nyamlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_seamlb_oakmlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_sfnmlb_colmlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_texmlb_anamlb_1: name 'umpire_values' is not defined
+Failed to import game gid_2015_09_04_milmlb_cinmlb_1: 'home_team_runs'
+Failed to import game gid_2015_09_05_tbamlb_nyamlb_1: a bytes-like object is required, not 'NoneType'
+Failed to import game gid_2015_09_06_clemlb_detmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 740 parameters were supplied')
+Failed to import game gid_2015_09_06_arimlb_chnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 740 parameters were supplied')
+Failed to import game gid_2015_09_06_balmlb_tormlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 740 parameters were supplied')
+Failed to import game gid_2015_09_06_chamlb_kcamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 840 parameters were supplied')
+Failed to import game gid_2015_09_06_atlmlb_wasmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 760 parameters were supplied')
+Failed to import game gid_2015_09_06_lanmlb_sdnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 860 parameters were supplied')
+Failed to import game gid_2015_09_06_nynmlb_miamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 720 parameters were supplied')
+Failed to import game gid_2015_09_06_milmlb_cinmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 720 parameters were supplied')
+Failed to import game gid_2015_09_06_minmlb_houmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 740 parameters were supplied')
+Failed to import game gid_2015_09_06_phimlb_bosmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 760 parameters were supplied')
+Failed to import game gid_2015_09_06_pitmlb_slnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 800 parameters were supplied')
+Failed to import game gid_2015_09_06_seamlb_oakmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 680 parameters were supplied')
+Failed to import game gid_2015_09_06_tbamlb_nyamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 800 parameters were supplied')
+Failed to import game gid_2015_09_06_sfnmlb_colmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 860 parameters were supplied')
+Failed to import game gid_2015_09_06_texmlb_anamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 660 parameters were supplied')
+Failed to import game gid_2015_09_07_chnmlb_slnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 840 parameters were supplied')
+Failed to import game gid_2015_09_07_balmlb_nyamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 820 parameters were supplied')
+Failed to import game gid_2015_09_07_atlmlb_phimlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 820 parameters were supplied')
+Failed to import game gid_2015_09_07_colmlb_sdnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 740 parameters were supplied')
+Failed to import game gid_2015_09_07_clemlb_chamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 700 parameters were supplied')
+Failed to import game gid_2015_09_07_houmlb_oakmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 800 parameters were supplied')
+Failed to import game gid_2015_09_07_milmlb_miamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 940 parameters were supplied')
+Failed to import game gid_2015_09_07_nynmlb_wasmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 800 parameters were supplied')
+Failed to import game gid_2015_09_07_lanmlb_anamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 980 parameters were supplied')
+Failed to import game gid_2015_09_07_minmlb_kcamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 880 parameters were supplied')
+Failed to import game gid_2015_09_07_pitmlb_cinmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 680 parameters were supplied')
+Failed to import game gid_2015_09_07_sfnmlb_arimlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 740 parameters were supplied')
+Failed to import game gid_2015_09_07_texmlb_seamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 740 parameters were supplied')
+Failed to import game gid_2015_09_07_tbamlb_detmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 800 parameters were supplied')
+Failed to import game gid_2015_09_07_tormlb_bosmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 680 parameters were supplied')
+Failed to import game gid_2015_09_08_balmlb_nyamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 700 parameters were supplied')
+Failed to import game gid_2015_09_08_atlmlb_phimlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 720 parameters were supplied')
+Failed to import game gid_2015_09_08_clemlb_chamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 760 parameters were supplied')
+Failed to import game gid_2015_09_08_colmlb_sdnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 640 parameters were supplied')
+Failed to import game gid_2015_09_08_chnmlb_slnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 840 parameters were supplied')
+Failed to import game gid_2015_09_08_lanmlb_anamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 820 parameters were supplied')
+Failed to import game gid_2015_09_08_houmlb_oakmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 680 parameters were supplied')
+Failed to import game gid_2015_09_08_minmlb_kcamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 640 parameters were supplied')
+Failed to import game gid_2015_09_08_milmlb_miamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 880 parameters were supplied')
+Failed to import game gid_2015_09_08_nynmlb_wasmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 800 parameters were supplied')
+Failed to import game gid_2015_09_08_pitmlb_cinmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 840 parameters were supplied')
+Failed to import game gid_2015_09_08_sfnmlb_arimlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 780 parameters were supplied')
+Failed to import game gid_2015_09_08_tormlb_bosmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 880 parameters were supplied')
+Failed to import game gid_2015_09_08_tbamlb_detmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1100 parameters were supplied')
+Failed to import game gid_2015_09_08_texmlb_seamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 860 parameters were supplied')
+Failed to import game gid_2015_09_10_chnmlb_phimlb_1: 'home_team_runs'
+Failed to import game gid_2015_09_10_tormlb_nyamlb_1: 'home_team_runs'
+Failed to import game gid_2015_09_10_chnmlb_phimlb_1: 'home_team_runs'
+Failed to import game gid_2015_09_10_tormlb_nyamlb_1: 'home_team_runs'
+Failed to import game gid_2015_09_11_detmlb_clemlb_1: 'time_date'
+Failed to import game gid_2015_09_12_detmlb_clemlb_1_bak: 'home_team_runs'
+Failed to import game gid_2016_06_03_colmlb_sdnmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_arimlb_chnmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_atlmlb_lanmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_chamlb_detmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_anamlb_pitmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_03_nyamlb_balmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_kcamlb_clemlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_milmlb_phimlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_nynmlb_miamlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_oakmlb_houmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_sfnmlb_slnmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_tbamlb_minmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_seamlb_texmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_tormlb_bosmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_03_wasmlb_cinmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_atlmlb_lanmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_colmlb_sdnmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_arimlb_chnmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_anamlb_pitmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_chamlb_detmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_04_kcamlb_clemlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_nyamlb_balmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_milmlb_phimlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_nynmlb_miamlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_oakmlb_houmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_seamlb_texmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_sfnmlb_slnmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_tbamlb_minmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_wasmlb_cinmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_04_tormlb_bosmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'game_id'.")
+Failed to import game gid_2016_06_06_nynmlb_pitmlb_1: 'home_team_runs'
+Failed to import game gid_2016_06_07_atlmlb_sdnmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_chnmlb_phimlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_anamlb_nyamlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_clemlb_seamlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_bosmlb_sfnmlb_1: 'sv_id'
+Failed to import game gid_2016_06_07_colmlb_lanmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_kcamlb_balmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_houmlb_texmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_nynmlb_pitmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_miamlb_minmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_nynmlb_pitmlb_2: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_oakmlb_milmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_slnmlb_cinmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_07_tbamlb_arimlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_tormlb_detmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_07_wasmlb_chamlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near ','.")
+Failed to import game gid_2016_06_08_clemlb_seamlb_1: 'sv_id'
+Failed to import game gid_2016_06_08_chnmlb_phimlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_bosmlb_sfnmlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_atlmlb_sdnmlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_houmlb_texmlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_colmlb_lanmlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_anamlb_nyamlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_kcamlb_balmlb_1: 'sv_id'
+Failed to import game gid_2016_06_08_oakmlb_milmlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_nynmlb_pitmlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_miamlb_minmlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_slnmlb_cinmlb_1: 'sv_id'
+Failed to import game gid_2016_06_08_tormlb_detmlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_tbamlb_arimlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_08_wasmlb_chamlb_1: ('42S02', "[42S02] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid object name 'pitches'.")
+Failed to import game gid_2016_06_09_anamlb_nyamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_09_balmlb_tormlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_09_clemlb_seamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_09_wasmlb_chamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The incoming request has too many parameters. The server supports a maximum of 2100 parameters. Reduce the number of parameters and resend the request.')
+Failed to import game gid_2016_06_09_nynmlb_milmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The incoming request has too many parameters. The server supports a maximum of 2100 parameters. Reduce the number of parameters and resend the request.')
+Failed to import game gid_2016_06_09_houmlb_texmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The incoming request has too many parameters. The server supports a maximum of 2100 parameters. Reduce the number of parameters and resend the request.')
+Failed to import game gid_2016_06_09_pitmlb_colmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The incoming request has too many parameters. The server supports a maximum of 2100 parameters. Reduce the number of parameters and resend the request.')
+Failed to import game gid_2016_06_09_miamlb_minmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The incoming request has too many parameters. The server supports a maximum of 2100 parameters. Reduce the number of parameters and resend the request.')
+Failed to import game gid_2016_06_09_slnmlb_cinmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The incoming request has too many parameters. The server supports a maximum of 2100 parameters. Reduce the number of parameters and resend the request.')
+Failed to import game gid_2016_06_10_balmlb_tormlb_1: 'sv_id'
+Failed to import game gid_2016_06_10_lanmlb_sfnmlb_1: 'sv_id'
+Failed to import game gid_2016_06_10_nynmlb_milmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_10_texmlb_seamlb_1: 'sv_id'
+Failed to import game gid_2016_06_10_sdnmlb_colmlb_1: 'sv_id'
+Failed to import game gid_2016_06_11_clemlb_anamlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_detmlb_nyamlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_chnmlb_atlmlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_bosmlb_minmlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_balmlb_tormlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_kcamlb_chamlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_houmlb_tbamlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_miamlb_arimlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_nynmlb_milmlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_lanmlb_sfnmlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_oakmlb_cinmlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_sdnmlb_colmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_11_slnmlb_pitmlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_phimlb_wasmlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_11_texmlb_seamlb_1: 'list' object has no attribute 'apend'
+Failed to import game gid_2016_06_12_chnmlb_atlmlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_detmlb_nyamlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_bosmlb_minmlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_clemlb_anamlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_balmlb_tormlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_houmlb_tbamlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_nynmlb_milmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_12_lanmlb_sfnmlb_1: 'sv_id'
+Failed to import game gid_2016_06_12_miamlb_arimlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_kcamlb_chamlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_sdnmlb_colmlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_phimlb_wasmlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_12_slnmlb_pitmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_12_oakmlb_cinmlb_1: 'sv_id'
+Failed to import game gid_2016_06_12_texmlb_seamlb_1: append() takes exactly one argument (0 given)
+Failed to import game gid_2016_06_13_clemlb_kcamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_13_detmlb_chamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The incoming request has too many parameters. The server supports a maximum of 2100 parameters. Reduce the number of parameters and resend the request.')
+Failed to import game gid_2016_06_13_chnmlb_wasmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_13_cinmlb_atlmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_13_lanmlb_arimlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_13_milmlb_sfnmlb_1: 'sv_id'
+Failed to import game gid_2016_06_13_miamlb_sdnmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_13_texmlb_oakmlb_1: 'sv_id'
+Failed to import game gid_2016_06_13_minmlb_anamlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_13_phimlb_tormlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_14_texmlb_oakmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_14_nyamlb_colmlb_1: 'sv_id'
+Failed to import game gid_2016_06_15_detmlb_chamlb_1: 'sv_id'
+Failed to import game gid_2016_06_15_cinmlb_atlmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The incoming request has too many parameters. The server supports a maximum of 2100 parameters. Reduce the number of parameters and resend the request.')
+Failed to import game gid_2016_06_15_milmlb_sfnmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_15_seamlb_tbamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The incoming request has too many parameters. The server supports a maximum of 2100 parameters. Reduce the number of parameters and resend the request.')
+Failed to import game gid_2016_06_16_balmlb_bosmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1440 parameters were supplied')
+Failed to import game gid_2016_06_16_nyamlb_minmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1420 parameters were supplied')
+Failed to import game gid_2016_06_16_cinmlb_atlmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1500 parameters were supplied')
+Failed to import game gid_2016_06_16_detmlb_kcamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1640 parameters were supplied')
+Failed to import game gid_2016_06_16_milmlb_lanmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1540 parameters were supplied')
+Failed to import game gid_2016_06_16_pitmlb_nynmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1440 parameters were supplied')
+Failed to import game gid_2016_06_16_tormlb_phimlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1640 parameters were supplied')
+Failed to import game gid_2016_06_16_seamlb_tbamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1700 parameters were supplied')
+Failed to import game gid_2016_06_16_wasmlb_sdnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1640 parameters were supplied')
+Failed to import game gid_2016_06_16_texmlb_oakmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1400 parameters were supplied')
+Failed to import game gid_2016_06_17_anamlb_oakmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1460 parameters were supplied')
+Failed to import game gid_2016_06_17_arimlb_phimlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1580 parameters were supplied')
+Failed to import game gid_2016_06_17_cinmlb_houmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1880 parameters were supplied')
+Failed to import game gid_2016_06_17_atlmlb_nynmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1560 parameters were supplied')
+Failed to import game gid_2016_06_17_chamlb_clemlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1380 parameters were supplied')
+Failed to import game gid_2016_06_17_colmlb_miamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1400 parameters were supplied')
+Failed to import game gid_2016_06_17_detmlb_kcamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1580 parameters were supplied')
+Failed to import game gid_2016_06_17_nyamlb_minmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1580 parameters were supplied')
+Failed to import game gid_2016_06_17_milmlb_lanmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1660 parameters were supplied')
+Failed to import game gid_2016_06_17_pitmlb_chnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1560 parameters were supplied')
+Failed to import game gid_2016_06_17_sfnmlb_tbamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1380 parameters were supplied')
+Failed to import game gid_2016_06_17_texmlb_slnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1320 parameters were supplied')
+Failed to import game gid_2016_06_17_seamlb_bosmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1540 parameters were supplied')
+Failed to import game gid_2016_06_17_tormlb_balmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1580 parameters were supplied')
+Failed to import game gid_2016_06_17_wasmlb_sdnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1580 parameters were supplied')
+Failed to import game gid_2016_06_18_chamlb_clemlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1640 parameters were supplied')
+Failed to import game gid_2016_06_18_atlmlb_nynmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1480 parameters were supplied')
+Failed to import game gid_2016_06_18_anamlb_oakmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1520 parameters were supplied')
+Failed to import game gid_2016_06_18_arimlb_phimlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1420 parameters were supplied')
+Failed to import game gid_2016_06_18_cinmlb_houmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1740 parameters were supplied')
+Failed to import game gid_2016_06_18_pitmlb_chnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1480 parameters were supplied')
+Failed to import game gid_2016_06_18_detmlb_kcamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1680 parameters were supplied')
+Failed to import game gid_2016_06_18_milmlb_lanmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1580 parameters were supplied')
+Failed to import game gid_2016_06_18_colmlb_miamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1660 parameters were supplied')
+Failed to import game gid_2016_06_18_nyamlb_minmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1500 parameters were supplied')
+Failed to import game gid_2016_06_18_tormlb_balmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1440 parameters were supplied')
+Failed to import game gid_2016_06_18_seamlb_bosmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1380 parameters were supplied')
+Failed to import game gid_2016_06_18_wasmlb_sdnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1460 parameters were supplied')
+Failed to import game gid_2016_06_18_sfnmlb_tbamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1540 parameters were supplied')
+Failed to import game gid_2016_06_18_texmlb_slnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1520 parameters were supplied')
+Failed to import game gid_2016_06_19_anamlb_oakmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1280 parameters were supplied')
+Failed to import game gid_2016_06_19_chamlb_clemlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1620 parameters were supplied')
+Failed to import game gid_2016_06_19_arimlb_phimlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1500 parameters were supplied')
+Failed to import game gid_2016_06_19_cinmlb_houmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1360 parameters were supplied')
+Failed to import game gid_2016_06_19_atlmlb_nynmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1380 parameters were supplied')
+Failed to import game gid_2016_06_19_colmlb_miamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1320 parameters were supplied')
+Failed to import game gid_2016_06_19_detmlb_kcamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1760 parameters were supplied')
+Failed to import game gid_2016_06_19_milmlb_lanmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1360 parameters were supplied')
+Failed to import game gid_2016_06_19_nyamlb_minmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1440 parameters were supplied')
+Failed to import game gid_2016_06_19_pitmlb_chnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1620 parameters were supplied')
+Failed to import game gid_2016_06_19_sfnmlb_tbamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1500 parameters were supplied')
+Failed to import game gid_2016_06_19_seamlb_bosmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1400 parameters were supplied')
+Failed to import game gid_2016_06_19_texmlb_slnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1540 parameters were supplied')
+Failed to import game gid_2016_06_19_tormlb_balmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1560 parameters were supplied')
+Failed to import game gid_2016_06_19_wasmlb_sdnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1440 parameters were supplied')
+Failed to import game gid_2016_06_20_arimlb_phimlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1300 parameters were supplied')
+Failed to import game gid_2016_06_20_balmlb_texmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1520 parameters were supplied')
+Failed to import game gid_2016_06_20_anamlb_houmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1620 parameters were supplied')
+Failed to import game gid_2016_06_20_colmlb_miamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1520 parameters were supplied')
+Failed to import game gid_2016_06_20_chamlb_bosmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1600 parameters were supplied')
+Failed to import game gid_2016_06_20_sfnmlb_pitmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1220 parameters were supplied')
+Failed to import game gid_2016_06_20_wasmlb_lanmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1320 parameters were supplied')
+Failed to import game gid_2016_06_20_seamlb_detmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 2080 parameters were supplied')
+Failed to import game gid_2016_06_20_tbamlb_clemlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1360 parameters were supplied')
+Failed to import game gid_2016_06_20_slnmlb_chnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1540 parameters were supplied')
+Failed to import game gid_2016_06_21_atlmlb_miamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1580 parameters were supplied')
+Failed to import game gid_2016_06_21_anamlb_houmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1320 parameters were supplied')
+Failed to import game gid_2016_06_21_chamlb_bosmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1400 parameters were supplied')
+Failed to import game gid_2016_06_21_arimlb_tormlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1400 parameters were supplied')
+Failed to import game gid_2016_06_21_cinmlb_texmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1400 parameters were supplied')
+Failed to import game gid_2016_06_21_sdnmlb_balmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1840 parameters were supplied')
+Failed to import game gid_2016_06_21_colmlb_nyamlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1660 parameters were supplied')
+Failed to import game gid_2016_06_21_milmlb_oakmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1540 parameters were supplied')
+Failed to import game gid_2016_06_21_phimlb_minmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1760 parameters were supplied')
+Failed to import game gid_2016_06_21_kcamlb_nynmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1360 parameters were supplied')
+Failed to import game gid_2016_06_21_tbamlb_clemlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1360 parameters were supplied')
+Failed to import game gid_2016_06_21_slnmlb_chnmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1440 parameters were supplied')
+Failed to import game gid_2016_06_21_seamlb_detmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1460 parameters were supplied')
+Failed to import game gid_2016_06_21_wasmlb_lanmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1380 parameters were supplied')
+Failed to import game gid_2016_06_21_sfnmlb_pitmlb_1: ('HY000', 'The SQL contains 0 parameter markers, but 1860 parameters were supplied')
+Failed to import game gid_2016_06_22_anamlb_houmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_22_slnmlb_chnmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_24_clemlb_detmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_24_arimlb_colmlb_1: 'sv_id'
+Failed to import game gid_2016_06_24_chnmlb_miamlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_24_houmlb_kcamlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_24_bosmlb_texmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_24_lanmlb_pitmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_24_oakmlb_anamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_24_sdnmlb_cinmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_24_minmlb_nyamlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_24_slnmlb_seamlb_1: 'sv_id'
+Failed to import game gid_2016_06_24_nynmlb_atlmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_24_tormlb_chamlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_24_tbamlb_balmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_24_wasmlb_milmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_24_phimlb_sfnmlb_1: ('42S22', "[42S22] [Microsoft][ODBC SQL Server Driver][SQL Server]Invalid column name 'sz_bottom'.")
+Failed to import game gid_2016_06_25_clemlb_detmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_25_arimlb_colmlb_1: 'sv_id'
+Failed to import game gid_2016_06_25_phimlb_sfnmlb_1: 'sv_id'
+Failed to import game gid_2016_06_25_sdnmlb_cinmlb_1: 'sv_id'
+Failed to import game gid_2016_06_25_tormlb_chamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_26_chnmlb_miamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_26_arimlb_colmlb_1: 'start_speed'
+Failed to import game gid_2016_06_26_bosmlb_texmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_26_clemlb_detmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_26_houmlb_kcamlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_26_lanmlb_pitmlb_1: 'start_speed'
+Failed to import game gid_2016_06_26_sdnmlb_cinmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_26_minmlb_nyamlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_26_nynmlb_atlmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_26_phimlb_sfnmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_26_slnmlb_seamlb_1: 'start_speed'
+Failed to import game gid_2016_06_26_wasmlb_milmlb_1: 'start_speed'
+Failed to import game gid_2016_06_26_tbamlb_balmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_26_tormlb_chamlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_27_chnmlb_cinmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_27_bosmlb_tbamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_27_clemlb_atlmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_27_lanmlb_pitmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_27_houmlb_anamlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_27_oakmlb_sfnmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_27_tormlb_colmlb_1: 'start_speed'
+Failed to import game gid_2016_06_27_nynmlb_wasmlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_27_slnmlb_kcamlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_27_phimlb_arimlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_27_texmlb_nyamlb_1: ('42000', "[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Incorrect syntax near 'UNI'.")
+Failed to import game gid_2016_06_28_clemlb_atlmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_28_lanmlb_milmlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_28_phimlb_arimlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_28_oakmlb_sfnmlb_1: 'start_speed'
+Failed to import game gid_2016_06_28_pitmlb_seamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_28_tormlb_colmlb_1: 'start_speed'
+Failed to import game gid_2016_06_29_balmlb_sdnmlb_1: 'pfx_x'
+Failed to import game gid_2016_06_29_chnmlb_cinmlb_1: 'pfx_x'
+Failed to import game gid_2016_06_29_phimlb_arimlb_1: 'pfx_x'
+Failed to import game gid_2016_06_29_sfnmlb_oakmlb_1: 'pfx_x'
+Failed to import game gid_2016_06_30_balmlb_seamlb_1: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]The data type ntext cannot be used as an operand to the UNION, INTERSECT or EXCEPT operators because it is not comparable.')
+Failed to import game gid_2016_06_30_miamlb_atlmlb_1: 'px'
+Failed to import game gid_2016_07_01_milmlb_slnmlb_1: ('22001', '[22001] [Microsoft][ODBC SQL Server Driver][SQL Server]String or binary data would be truncated.')
