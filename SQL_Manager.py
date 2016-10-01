@@ -31,13 +31,10 @@ class Game_Importer(threading.Thread):
 					game = ElementTree.ElementTree(ElementTree.fromstring(game_data)).getroot()
 
 					self.players_to_SQL(cursor, gid, players) # Insert new players into DB
-					#self.teams_to_SQL(cursor, gid, game) # Insert new teams into DB
-
-					# Import game data
-					storedProcedure = "EXECUTE PitchFX.dbo.sp_ImportGame @gid = ?, @xml = ?"
-					values = [gid, game_data]
-					cursor.execute(storedProcedure, values)
-
+					self.teams_to_SQL(cursor, gid, game) # Insert new teams into DB
+					self.game_to_SQL(cursor, gid, game) # Insert new game record into DB
+					self.atbats_to_SQL(cursor, gid, game) # Insert new atbat records into DB
+					self.pitches_to_SQL(cursor, gid, game) # Insert new pitch records into DB
 					self.umpires_to_SQL(cursor, gid, players) # Insert new umpires into DB, update game record with umpires
 
 					connection.close()
@@ -48,6 +45,167 @@ class Game_Importer(threading.Thread):
 				logFile.write(report + '\n')
 			print(report)
 			pass
+	
+	def pitches_to_SQL(self, cursor, gid, games):
+		# Import the individual pitches from the parsed XML
+		pitch_values = []
+		pitch_with = """WITH pitches
+AS (
+"""
+		for atbat in games.findall('.//atbat'):
+			atbat_num = atbat.attrib['num']
+			for pitch in atbat.findall('pitch'):
+				pitch_with = pitch_with + """	SELECT ? AS atbat_num, ? AS des, ? AS des_es, ? AS pid, ? AS type, ? AS tfs, ? AS tfs_zulu, ? AS x, ? AS y, ? AS event_num, ? AS sv_id, ? AS play_guid, ? AS start_speed, ? AS end_speed, ? AS sz_top, ? AS sz_bot, ? AS pfx_x, ? AS pfx_z, ? AS px, ? AS pz, ? AS x0, ? AS y0, ? AS z0, ? AS vx0, ? AS vy0, ? AS vz0, ? AS ax, ? AS ay, ? AS az, ? AS break_y, ? AS break_angle, ? AS break_length, ? AS pitch_type, ? AS type_confidence, ? AS zone, ? AS nasty, ? AS spin_dir, ? AS spin_rate
+		UNION
+	"""
+				pitch_values.append(atbat_num)
+				pitch_values.append(pitch.attrib['des'])
+				pitch_values.append(pitch.attrib['des_es'])
+				pitch_values.append(pitch.attrib['id'])
+				pitch_values.append(pitch.attrib['type'])
+				pitch_values.append(pitch.attrib['tfs'])
+				pitch_values.append(pitch.attrib['tfs_zulu'])
+				pitch_values.append(pitch.attrib['x'])
+				pitch_values.append(pitch.attrib['y'])
+				pitch_values.append(pitch.attrib['event_num'])
+				pitch_values.append(pitch.attrib['sv_id'])
+				pitch_values.append(pitch.attrib['play_guid'])
+				pitch_values.append(pitch.attrib['start_speed'])
+				pitch_values.append(pitch.attrib['end_speed'])
+				pitch_values.append(pitch.attrib['sz_top'])
+				pitch_values.append(pitch.attrib['sz_bot'])
+				pitch_values.append(pitch.attrib['pfx_x'])
+				pitch_values.append(pitch.attrib['pfx_z'])
+				pitch_values.append(pitch.attrib['px'])
+				pitch_values.append(pitch.attrib['pz'])
+				pitch_values.append(pitch.attrib['x0'])
+				pitch_values.append(pitch.attrib['y0'])
+				pitch_values.append(pitch.attrib['z0'])
+				pitch_values.append(pitch.attrib['vx0'])
+				pitch_values.append(pitch.attrib['vy0'])
+				pitch_values.append(pitch.attrib['vz0'])
+				pitch_values.append(pitch.attrib['ax'])
+				pitch_values.append(pitch.attrib['ay'])
+				pitch_values.append(pitch.attrib['az'])
+				pitch_values.append(pitch.attrib['break_y'])
+				pitch_values.append(pitch.attrib['break_angle'])
+				pitch_values.append(pitch.attrib['break_length'])
+				pitch_values.append(pitch.attrib['pitch_type'])
+				pitch_values.append(pitch.attrib['type_confidence'])
+				pitch_values.append(pitch.attrib['zone'])
+				pitch_values.append(pitch.attrib['nasty'])
+				pitch_values.append(pitch.attrib['spin_dir'])
+				pitch_values.append(pitch.attrib['spin_rate'])
+		pitch_with = pitch_with[:-8] + """
+)
+"""
+		pitch_values.append(gid)
+
+		pitch_insert = pitch_with = """INSERT INTO pitch ([atbat_id],[des],[des_es],[pid],[type],[tfs],[tfs_zulu],[x],[y],[event_num],[sv_id],[play_guid],[start_speed],[end_speed],[sz_top],[sz_bottom],[pfx_x],[pfx_z],[px],[pz],[x0],[y0],[z0],[vx0],[vy0],[vz0],[ax],[ay],[az],[break_y],[break_angle],[break_length],[pitch_type],[type_confidence],[zone],[nasty],[spin_dir],[spin_rate])
+"""		
+		pitch_insert = pitch_insert + """SELECT a.id, ,p.[des],p.des_es,p.pid,p.[type],p.tfs,p.tfs_zulu,p.x,p.y,p.event_num,p.sv_id,p.play_guid,p.start_speed,p.end_speed,p.sz_top,p.sz_bottom,p.pfx_x,p.pfx_z,p.px,p.pz,p.x0,p.y0,p.z0,p.vx0,p.vy0,p.vz0,p.ax,p.ay,p.az,p.break_y,p.break_angle,p.break_length,p.pitch_type,p.type_confidence,p.zone,p.nasty,p.spin_dir,p.spin_rate
+FROM pitches p
+INNER JOIN atbat a ON p.atbat_num = a.num
+WHERE a.game_id = ?;"""
+		cursor.execute(pitch_insert, pitch_values)
+
+	def atbats_to_SQL(self, cursor, gid, games):
+		# Import the atbats within a game from the parsed XML
+		atbat_values = []
+		atbat_with = """WITH atbats
+AS (
+"""
+		for inning in games.findall('./inning'):
+			inn_num = inning.attrib['num']
+			for atbat in inning.findall('./top/atbat'):
+				atbat_with = atbat_with + """	SELECT ? AS gid, ? AS inning, ? AS top_bot, ? AS num, ? AS b, ? aS s, ? AS o, ? AS start_tfs_zulu, ? AS batter, ? AS stand, ? AS b_height, ? AS pitcher, ? AS p_throws, ? AS des, ? AS des_es, ? AS event_num, ? AS event, ? AS event_es, ? AS home_team_runs, ? AS away_team_runs
+		UNION
+	"""
+				atbat_values.append(gid)
+				atbat_values.append(inn_num)
+				atbat_values.append(0)
+				atbat_values.append(atbat.attrib['num'])
+				atbat_values.append(atbat.attrib['b'])
+				atbat_values.append(atbat.attrib['s'])
+				atbat_values.append(atbat.attrib['o'])
+				atbat_values.append(atbat.attrib['start_tfs_zulu'])
+				atbat_values.append(atbat.attrib['batter'])
+				atbat_values.append(atbat.attrib['stand'])
+				atbat_values.append(atbat.attrib['b_height'])
+				atbat_values.append(atbat.attrib['pitcher'])
+				atbat_values.append(atbat.attrib['p_throws'])
+				atbat_values.append(atbat.attrib['des'])
+				atbat_values.append(atbat.attrib['des_es'])
+				atbat_values.append(atbat.attrib['event_num'])
+				atbat_values.append(atbat.attrib['event'])
+				atbat_values.append(atbat.attrib['event_es'])
+				atbat_values.append(atbat.attrib['home_team_runs'])
+				atbat_values.append(atbat.attrib['away_team_runs'])
+			for atbat in inning.findall('./bot/atbat'):
+				atbat_with = atbat_with + """	SELECT ? AS gid, ? AS inning, ? AS top_bot, ? AS num, ? AS b, ? aS s, ? AS o, ? AS start_tfs_zulu, ? AS batter, ? AS stand, ? AS b_height, ? AS pitcher, ? AS p_throws, ? AS des, ? AS des_es, ? AS event_num, ? AS event, ? AS event_es, ? AS home_team_runs, ? AS away_team_runs
+		UNION
+	"""
+				atbat_values.append(gid)
+				atbat_values.append(inn_num)
+				atbat_values.append(1)
+				atbat_values.append(atbat.attrib['num'])
+				atbat_values.append(atbat.attrib['b'])
+				atbat_values.append(atbat.attrib['s'])
+				atbat_values.append(atbat.attrib['o'])
+				atbat_values.append(atbat.attrib['start_tfs_zulu'])
+				atbat_values.append(atbat.attrib['batter'])
+				atbat_values.append(atbat.attrib['stand'])
+				atbat_values.append(atbat.attrib['b_height'])
+				atbat_values.append(atbat.attrib['pitcher'])
+				atbat_values.append(atbat.attrib['p_throws'])
+				atbat_values.append(atbat.attrib['des'])
+				atbat_values.append(atbat.attrib['des_es'])
+				atbat_values.append(atbat.attrib['event_num'])
+				atbat_values.append(atbat.attrib['event'])
+				atbat_values.append(atbat.attrib['event_es'])
+				atbat_values.append(atbat.attrib['home_team_runs'])
+				atbat_values.append(atbat.attrib['away_team_runs'])
+		atbat_with = atbat_with[:-8] + """
+)
+"""
+		atbat_insert = atbat_with = """INSERT INTO atbat  (game_id, inning, top_bot, num, b, s, o, start_tfs_zulu, batter, stand, b_height, pitcher, p_throws, [des], des_es, event_num, [event], event_es, home_team_runs, away_team_runs)
+"""		
+		atbat_insert = atbat_insert + """SELECT a.game_id, a.inning, a.top_bot, a.num, a.b, a.s, a.o, a.start_tfs_zulu, a.batter, a.stand, a.b_height, a.pitcher, a.p_throws, a.[des], a.des_es, a.event_num, a.[event], a.event_es, a.home_team_runs, a.away_team_runs
+FROM atbats a;"""
+		cursor.execute(atbat_insert, atbat_values)
+
+	def game_to_SQL(self, cursor, gid, games):
+		#Import the game record from the parsed XML
+		game_values = []
+		game_with = """WITH games
+AS (
+"""
+		for game in games.findall('.'):
+			game_with = game_with + """	SELECT ? AS gid, ? AS time_date, ? AS game_pk, ? AS venue, ? AS venue_id, ? AS away_team_id, ? AS home_team_id, ? AS home_time_zone, ? AS game_nbr, ? AS home_team_runs, ? AS away_team_runs, ? AS is_perfect_game, ? AS is_no_hitter, ? AS des
+	UNION
+"""
+		game_values.append(gid)
+		game_values.append(game.attrib['time_date'])
+		game_values.append(game.attrib['game_pk'])
+		game_values.append(game.attrib['venue'])
+		game_values.append(game.attrib['venue_id'])
+		game_values.append(game.attrib['away_team_id'])
+		game_values.append(game.attrib['home_team_id'])
+		game_values.append(game.attrib['home_time_zone'])
+		game_values.append(game.attrib['game_nbr'])
+		game_values.append(game.attrib['home_team_runs'])
+		game_values.append(game.attrib['away_team_runs'])
+		game_values.append(game.attrib['is_perfect_game'])
+		game_values.append(game.attrib['is_no_hitter'])
+		game_values.append(game.attrib['description'])
+	game_with = game_with[:-8] + """
+)
+"""
+	game_insert = game_with + """INSERT INTO game (gid, game_date, game_pk, venue, venue_id, away_team_id, home_team_id, home_time_zone, game_nbr, home_team_runs, away_team_runs, is_perfect_game, is_no_hitter, [description] )
+"""
+		game_insert = game_insert + """SELECT g.gid, g.time_date, g.game_pk, g.venue, g.venue_id, g.away_team_id, g.home_team_id, g.home_time_zone, g.game_nbr, g.home_team_runs,  g.away_team_runs, g.is_perfect_game, g.is_no_hitter, g.des
+FROM games g;"""
+		cursor.execute(game_insert, game_values)
 
 	def teams_to_SQL (self, cursor, gid, games):
 		# Import either team if it doesn't already exist
@@ -55,7 +213,7 @@ class Game_Importer(threading.Thread):
 		teams_with = """WITH teams
 AS (
 """
-		for game in games.findall('./game'):
+		for game in games.findall('.'):
 			teams_with = teams_with + """	SELECT ? AS id, ? AS abbreviation, ? AS file_code, ? AS city, ? AS name
 	UNION
 	SELECT ? AS id, ? AS abbreviation, ? AS file_code, ? AS city, ? AS name
