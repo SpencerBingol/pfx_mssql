@@ -43,12 +43,20 @@ def get_game_urls(daterange):
 		cursor = connection.cursor()
 		gids = [g[1] for g in games]
 
-		query = "SELECT gid FROM game WHERE gid IN ("
-		query = query + "?, "*len(gids)
-		query = query[:-2] + ")"
+		query_gids = []
+		while len(gids) > 0:
+			if len(gids) > 2100:
+				query_gids = gids[:2099]
+				gids = gids[2100:]
+			else: 
+				query_gids = gids
+				gids = []
+			query = "SELECT gid FROM game WHERE gid IN ("
+			query = query + "?, "*len(tmp_gids)
+			query = query[:-2] + ")"
 
-		cursor.execute(query, gids)
-		gid_exists = cursor.fetchall()
+			cursor.execute(query, query_gids)
+			gid_exists = gid_exists + cursor.fetchall()
 	return [g[0] for g in games if g[1] not in [e[0] for e in gid_exists]]
 
 def main(argv):
