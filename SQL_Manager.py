@@ -89,109 +89,109 @@ AS (
 				if 'sv_id' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['sv_id'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'play_guid' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['play_guid'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'start_speed' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['start_speed'])
 				else :
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'end_speed' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['end_speed'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				pitch_values[len(pitch_values)-1].append(pitch.attrib['sz_top'])
 				pitch_values[len(pitch_values)-1].append(pitch.attrib['sz_bot'])
 				if 'pfx_x' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['pfx_x'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'pfx_z' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['pfx_z'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'px' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['px'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'pz' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['pz'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'x0' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['x0'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'y0' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['y0'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'z0' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['z0'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'vx0' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['vx0'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'vy0' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['vy0'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'vz0' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['vz0'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'ax' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['ax'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'ay' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['ay'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'az' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['az'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'break_y' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['break_y'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'break_angle' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['break_angle'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'break_length' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['break_length'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'pitch_type' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['pitch_type'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'type_confidence' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['type_confidence'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'zone' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['zone'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'nasty' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['nasty'])
 				else: 
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'spin_dir' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['spin_dir'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'spin_rate' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['spin_rate'])
 				else:
-					pitch_values[len(pitch_values)-1].append('NULL')
+					pitch_values[len(pitch_values)-1].append(None)
 				current_parameter_count = current_parameter_count + 38
 		pitch_withs[len(pitch_withs)-1] = pitch_withs[len(pitch_withs)-1][:-12] + """
 )
@@ -297,7 +297,7 @@ AS (
 			game_values.append(game.attrib['is_perfect_game'])
 			game_values.append(game.attrib['is_no_hitter'])
 			if 'description' not in game.attrib: 
-				game_values.append('NULL')
+				game_values.append(None)
 			else:
 				game_values.append(game.attrib['description'])
 		game_with = game_with[:-8] + """
