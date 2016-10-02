@@ -20,7 +20,7 @@ def generate_daterange(start_date, end_date, gameday_url):
 
 	return dates
 
-def get_game_urls(daterange):
+def get_game_urls(daterange, connection_string):
 	games = []
 	
 	for directory in daterange:
@@ -38,8 +38,7 @@ def get_game_urls(daterange):
 
 	gid_exists = []
 	auto_commit = True
-	cnx = 'Driver={SQL Server};Server=localhost\SQLEXPRESS;Database=PitchFX;Trusted_Connection=True'
-	with pypyodbc.connect(cnx, auto_commit) as connection:
+	with pypyodbc.connect(connection_string, auto_commit) as connection:
 		cursor = connection.cursor()
 		gids = [g[1] for g in games]
 
@@ -63,6 +62,7 @@ def main(argv):
 	gameday_url = "http://gd2.mlb.com/components/game/mlb/"
 	usage = """Usage 1: downloader.py -s <yyyy-mm-dd> -e <yyyy-mm-dd>
 Usage 2: downloader.py -y"""
+	connection_string = 'Driver={SQL Server};Server=localhost\SQLEXPRESS;Database=PitchFX;Trusted_Connection=True'
 	SQL_pool_size = 10
 	HTTP_pool_size  = 5
 	
@@ -104,12 +104,12 @@ Usage 2: downloader.py -y"""
 	print("End Date: {}".format(end_date.strftime("%B %d, %Y")))
 
 	dates = generate_daterange(start_date, end_date, gameday_url)
-	games = get_game_urls(dates)
+	games = get_game_urls(dates, connection_string)
 	print("GAMES TO IMPORT: {}".format(len(games)))
 
 
 	q = queue.Queue()
-	SQL_thread = SQL_Manager(q, SQL_pool_size)
+	SQL_thread = SQL_Manager(q, SQL_pool_size, connection_string)
 	HTTP_thread = HTTP_Manager(q, games, HTTP_pool_size, SQL_pool_size)
 
 	SQL_thread.start()

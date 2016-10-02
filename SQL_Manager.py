@@ -6,9 +6,10 @@ from xml.etree import ElementTree
 __author__ = 'Spencer Bingol'
 
 class Game_Importer(threading.Thread):
-	def __init__(self, q):
+	def __init__(self, q, connection_string):
 		threading.Thread.__init__(self)
 		self._q = q
+		self._connection_string = connection_string
 
 	def run(self):
 		while True:
@@ -16,13 +17,12 @@ class Game_Importer(threading.Thread):
 			if isinstance(game_data, str) and game_data == 'quit':
 				break
 			if game_data is not None:
-				self.import_game(game_data[0], game_data[1], game_data[2])
+				self.import_game(self._connection_string, game_data[0], game_data[1], game_data[2])
 
-	def import_game(self, gid, player_data, game_data):
+	def import_game(self, connection_string, gid, player_data, game_data):
 		try:
 			auto_commit = True
-			cnx = 'Driver={SQL Server};Server=localhost\SQLEXPRESS;Database=PitchFX;Trusted_Connection=True'
-			with pypyodbc.connect(cnx, auto_commit) as connection:
+			with pypyodbc.connect(connection_string, auto_commit) as connection:
 				cursor = connection.cursor()
 
 				cursor.execute("SELECT * FROM game WHERE gid = ?", [gid])
@@ -439,16 +439,17 @@ WHERE gid = ?;"""
 		cursor.execute(umpire_update, umpires_values)
 
 class SQL_Manager(threading.Thread):
-	def __init__(self, q, SQL_pool_size):
+	def __init__(self, q, SQL_pool_size, connection_string):
 		threading.Thread.__init__(self)
 		self._q = q
 		self._SQL_pool_size = SQL_pool_size
+		self._connection_string = connection_string
 
 	def run(self):
 		start_time = time.time()
 		SQL_pool = []
 		for _ in range(self._SQL_pool_size):
-			SQL_thread = Game_Importer(self._q)
+			SQL_thread = Game_Importer(self._q, self._connection_string)
 			SQL_thread.start()
 			SQL_pool.append(SQL_thread)
 
