@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import threading, queue, itertools, time
+import threading, queue, itertools, time, urllib
 from multiprocessing.dummy import Pool
 from urllib.request import urlopen
 from urllib.error import HTTPError
@@ -31,19 +31,19 @@ class HTTP_Manager(threading.Thread):
 
 	def download_file(self, url):
 		try:
-			u = urlopen(url)
 			text = ""
-			file_size = int(u.headers['Content-Length'])
-			file_size_dl = 0
-			block_sz = 8192
+			with urlopen(url) as u:
+				file_size = int(u.headers['Content-Length'])
+				file_size_dl = 0
+				block_sz = 8192
 		
-			while True:
-				buffer = u.read(block_sz)
-				if not buffer:
-					break
+				while True:
+					buffer = u.read(block_sz)
+					if not buffer:
+						break
 
-				file_size_dl += len(buffer)
-				text = text + buffer.decode('utf-8')
+					file_size_dl += len(buffer)
+					text = text + buffer.decode('utf-8')
 
 			return text
 		except urllib.error.HTTPError as e:
