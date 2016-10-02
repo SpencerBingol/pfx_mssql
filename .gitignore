@@ -2,4 +2,4 @@
 year_*/ 
 
 # ignore the error log
-errors.log
+errorlog.txt

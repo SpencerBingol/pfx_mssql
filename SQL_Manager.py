@@ -41,7 +41,7 @@ class Game_Importer(threading.Thread):
 					print("IMPORTED TO SQL: {}".format(gid))
 		except Exception as e:
 			report = "Failed to import game {}: {}".format(gid, e)
-			with open("errors.log", "a") as logFile:
+			with open("errorlog.txt", "a") as logFile:
 				logFile.write(report + '\n')
 			print(report)
 			pass
