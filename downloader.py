@@ -52,31 +52,37 @@ def get_game_urls(daterange):
 				query_gids = gids
 				gids = []
 			query = "SELECT gid FROM game WHERE gid IN ("
-			query = query + "?, "*len(tmp_gids)
+			query = query + "?, "*len(query_gids)
 			query = query[:-2] + ")"
 
 			cursor.execute(query, query_gids)
 			gid_exists = gid_exists + cursor.fetchall()
-	return [g[0] for g in games if g[1] not in [e[0] for e in gid_exists]]
+	return [g[0] for g in games if g[1] not in [e[0] for e in gid_exists] and 'int' not in g[1]]
 
 def main(argv):
 	gameday_url = "http://gd2.mlb.com/components/game/mlb/"
-	usage = 'Usage: downloader.py -s <yyyy-mm-dd> -e <yyyy-mm-dd>'
+	usage = """Usage 1: downloader.py -s <yyyy-mm-dd> -e <yyyy-mm-dd>
+Usage 2: downloader.py -y"""
 	SQL_pool_size = 10
 	HTTP_pool_size  = 5
 	
 	try:
-		opts, args = getopt.getopt(argv, "s:e:")
+		opts, args = getopt.getopt(argv, "s:e:y")
 	except:
 		print(usage)
 		print("   -s: yyyy-mm-dd formatted date, the START DATE of the range to download.")
 		print("   -e: yyyy-mm-dd formatted date, the END DATE of the range to download.")
+		print("   -y: A separate, standalone command that indicates to pull all of YESTERDAY's games.")
 		sys.exit(2)
 
 	start_date = 0
 	end_date = 0
 	for opt, arg in opts:
-		if opt == '-s':
+		if opt == '-y':
+			start_date = datetime.now() - timedelta(days=1)
+			end_date = datetime.now() - timedelta(days=1)
+			break
+		elif opt == '-s':
 			try:
 				start_date = datetime.strptime(arg, '%Y-%m-%d').date()
 			except:

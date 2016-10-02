@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import threading, pypyodbc, queue
+import threading, pypyodbc, queue, time
 from xml.etree import ElementTree
 
 __author__ = 'Spencer Bingol'
@@ -102,8 +102,14 @@ AS (
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['end_speed'])
 				else:
 					pitch_values[len(pitch_values)-1].append(None)
-				pitch_values[len(pitch_values)-1].append(pitch.attrib['sz_top'])
-				pitch_values[len(pitch_values)-1].append(pitch.attrib['sz_bot'])
+				if 'sz_top' in pitch.attrib:
+					pitch_values[len(pitch_values)-1].append(pitch.attrib['sz_top'])
+				else:
+					pitch_values[len(pitch_values)-1].append(None)
+				if 'sz_bot' in pitch.attrib:
+					pitch_values[len(pitch_values)-1].append(pitch.attrib['sz_bot'])
+				else: 
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'pfx_x' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['pfx_x'])
 				else:
@@ -292,10 +298,22 @@ AS (
 			game_values.append(game.attrib['home_time'])
 			game_values.append(game.attrib['home_time_zone'])
 			game_values.append(game.attrib['game_nbr'])
-			game_values.append(game.attrib['home_team_runs'])
-			game_values.append(game.attrib['away_team_runs'])
-			game_values.append(game.attrib['is_perfect_game'])
-			game_values.append(game.attrib['is_no_hitter'])
+			if 'home_team_runs' in game.attrib:
+				game_values.append(game.attrib['home_team_runs'])
+			else:
+				game_values.append(None)
+			if 'away_team_runs' in game.attrib:
+				game_values.append(game.attrib['away_team_runs'])
+			else:
+				game_values.append(None)
+			if 'is_perfect_game' in game.attrib:
+				game_values.append(game.attrib['is_perfect_game'])
+			else:
+				game_values.append(None)
+			if 'is_no_hitter' in game.attrib:
+				game_values.append(game.attrib['is_no_hitter'])
+			else:
+				game_values.append(None)
 			if 'description' not in game.attrib: 
 				game_values.append(None)
 			else:
@@ -427,6 +445,7 @@ class SQL_Manager(threading.Thread):
 		self._SQL_pool_size = SQL_pool_size
 
 	def run(self):
+		start_time = time.time()
 		SQL_pool = []
 		for _ in range(self._SQL_pool_size):
 			SQL_thread = Game_Importer(self._q)
@@ -435,3 +454,6 @@ class SQL_Manager(threading.Thread):
 
 		for SQL_thread in SQL_pool:
 			SQL_thread.join()
+
+		end_time = time.time()
+		print("SQL Manager Elapsed Time: {}".format(end_time - start_time))

@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
-import threading, queue, itertools
+import threading, queue, itertools, time
 from multiprocessing.dummy import Pool
 from urllib.request import urlopen
+from urllib.error import HTTPError
 
 __author__ = 'Spencer Bingol'
 
@@ -15,6 +16,7 @@ class HTTP_Manager(threading.Thread):
 		self._SQL_pool_size = SQL_pool_size
 
 	def run(self):
+		start_time = time.time()
 		HTTP_pool = Pool(self._HTTP_pool_size)
 		results = HTTP_pool.starmap(self.get_game_files, zip(self._games, itertools.repeat(self._q)))
 
@@ -23,6 +25,9 @@ class HTTP_Manager(threading.Thread):
 
 		for _ in range(self._SQL_pool_size):
 			self._q.put('quit')
+
+		end_time = time.time()
+		print("HTTP Manager Elapsed Time: {}".format(end_time - start_time))
 
 	def download_file(self, url):
 		try:
@@ -41,29 +46,47 @@ class HTTP_Manager(threading.Thread):
 				text = text + buffer.decode('utf-8')
 
 			return text
+		except urllib.error.HTTPError as e:
+			report = "HTTP Error on page [{}]: {}".format(url, e)
+			print(report)
+			with open("errorlog.txt", "a") as logFile:
+				logFile.write(report + '\n')
+			return None
 		except Exception as e:
-			print("Error trying to download [{}]: {}".format(url, e))
+			report = "Error trying to download [{}]: {}".format(url, e)
+			print(report)
+			with open("errorlog.txt", "a") as logFile:
+				logFile.write(report + '\n')
+			return None
 
 	def get_game_files(self, game, q):
 		gid = game.split('/')[-2]
-		#dir_loc = "data/" + game.split('/')[-5] + "/" + game.split('/')[-4] + "/" + game.split('/')[-3] + "/" + gid + "/"
-
+		#try:
+		#	plays = urlopen(game+"linescore.xml")
+		#	pl = urlopen(game+"players.xml")
+		#	inn = urlopen(game+"inning/inning_all.xml")
+		#except urllib.error.HTTPError as e:
+		#	pass
+		#else:
+		print("DOWNLOADING GAME: {}".format(game))
+		linescore = self.download_file(game + "linescore.xml")
+		if linescore is None:
+			return
+		players = self.download_file(game + "players.xml")
+		if players is None:
+			return
+		inning_all = self.download_file(game + "inning/inning_all.xml")
+		if inning_all is None:
+			return
+		
 		try:
-			plays = urlopen(game+"plays.xml")
-		except urllib.error.HTTPError as e:
-			pass
-		else:
-			#if not os.path.exists(dir_loc):
-			#	os.makedirs(dir_loc)
-
-			linescore = self.download_file(game + "linescore.xml")
-			players = self.download_file(game + "players.xml")
-			inning_all = self.download_file(game + "inning/inning_all.xml")
-
 			linescore = linescore.split('>')[2]
 			inning_split = inning_all.split('>')
 			inning_split[1] = linescore
 			inning_all = '>'.join(inning_split)
-
-			print("DOWNLOADED GAME: {}".format(game))
 			q.put([gid, players, inning_all])
+		except Exception as e:
+			report = "Error trying to prepare the XML [{}]: {}".format(gid, e)
+			print(report)
+			with open("errorlog.txt", "a") as logFile:
+				logFile.write(report + '\n')
