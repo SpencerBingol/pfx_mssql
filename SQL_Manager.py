@@ -435,7 +435,7 @@ class Game_Importer(threading.Thread):
 					current_pitch.append(None)
 				pitches.append(current_pitch)
 
-		insert = "INSERT INTO pitch ([atbat_id],[des],[des_es],[pid],[type],[tfs],[tfs_zulu],[x],[y],[event_num],[sv_id],[play_guid],[start_speed],[end_speed],[sz_top],[sz_bottom],[pfx_x],[pfx_z],[px],[pz],[x0],[y0],[z0],[vx0],[vy0],[vz0],[ax],[ay],[az],[break_y],[break_angle],[break_length],[pitch_type],[type_confidence],[zone],[nasty],[spin_dir],[spin_rate])"		
+		insert = "INSERT INTO pitch"+gid[4:8]+" ([atbat_id],[des],[des_es],[pid],[type],[tfs],[tfs_zulu],[x],[y],[event_num],[sv_id],[play_guid],[start_speed],[end_speed],[sz_top],[sz_bottom],[pfx_x],[pfx_z],[px],[pz],[x0],[y0],[z0],[vx0],[vy0],[vz0],[ax],[ay],[az],[break_y],[break_angle],[break_length],[pitch_type],[type_confidence],[zone],[nasty],[spin_dir],[spin_rate])"		
 		insert += "SELECT a.id,p.[des],p.des_es,p.pid,p.[type],p.tfs,p.tfs_zulu,p.x,p.y,p.event_num,p.sv_id,p.play_guid,p.start_speed,p.end_speed,p.sz_top,p.sz_bot,p.pfx_x,p.pfx_z,p.px,p.pz,p.x0,p.y0,p.z0,p.vx0,p.vy0,p.vz0,p.ax,p.ay,p.az,p.break_y,p.break_angle,p.break_length,p.pitch_type,p.type_confidence,p.zone,p.nasty,p.spin_dir,p.spin_rate FROM pitches p INNER JOIN atbat a ON p.atbat_num = a.num WHERE a.game_id = ?;"
 		while len(pitches) > 0:
 			query_with = "WITH pitches AS ("
