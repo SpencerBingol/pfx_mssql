@@ -5,49 +5,125 @@ from xml.etree import ElementTree
 
 __author__ = 'Spencer Bingol'
 
+class SQL_Manager(threading.Thread):
+	""" This class manages the thread pool that pulls XML info from the Queue and puts into the DB. """
+
+	def __init__(self, q, SQL_pool_size, connection_string):
+		threading.Thread.__init__(self)
+		self._q = q
+		self._SQL_pool_size = SQL_pool_size
+		self._connection_string = connection_string
+
+	def run(self):
+		start_time = time.time()	# Simple timer - Start time
+		SQL_pool = []
+		for _ in range(self._SQL_pool_size):	# Create the requested number of threads
+			SQL_thread = Game_Importer(self._q, self._connection_string)
+			SQL_thread.start()
+			SQL_pool.append(SQL_thread)
+
+		for SQL_thread in SQL_pool:
+			SQL_thread.join()	# Join the pool
+
+		end_time = time.time()	# Simple timer - End time
+		print("SQL Manager Elapsed Time: {}".format(end_time - start_time)) # Print elapsed time
+
 class Game_Importer(threading.Thread):
+	### Thread class that receives a section of the queue of game information. ###
+
 	def __init__(self, q, connection_string):
 		threading.Thread.__init__(self)
 		self._q = q
 		self._connection_string = connection_string
 
 	def run(self):
-		while True:
-			game_data = self._q.get()
-			if isinstance(game_data, str) and game_data == 'quit':
+		while True:	# Run forever, until hitting the escape keyword (quit)
+			game_data = self._q.get()	# Pull from Queue
+			if isinstance(game_data, str) and game_data == 'quit':	# Evaluate for escape keyword
 				break
 			if game_data is not None:
 				self.import_game(self._connection_string, game_data[0], game_data[1], game_data[2])
 
 	def import_game(self, connection_string, gid, player_data, game_data):
+		""" Given a connection string and game's XML data, execute the inserts/updates to import the game into SQL. """
+
 		try:
 			auto_commit = True
 			with pypyodbc.connect(connection_string, auto_commit) as connection:
 				cursor = connection.cursor()
+				players = ElementTree.ElementTree(ElementTree.fromstring(player_data)).getroot()
+				game = ElementTree.ElementTree(ElementTree.fromstring(game_data)).getroot()
 
-				cursor.execute("SELECT * FROM game WHERE gid = ?", [gid])
-				if len(cursor.execute("SELECT * FROM game WHERE gid = ?", [gid]).fetchall()) == 0:
-					players = ElementTree.ElementTree(ElementTree.fromstring(player_data)).getroot()
-					game = ElementTree.ElementTree(ElementTree.fromstring(game_data)).getroot()
+				self.players_to_SQL(cursor, gid, players) # Insert new players into DB
+				self.teams_to_SQL(cursor, gid, game) # Insert new teams into DB
+				self.game_to_SQL(cursor, gid, game) # Insert new game record into DB
+				self.atbats_to_SQL(cursor, gid, game) # Insert new atbat records into DB
+				self.pitches_to_SQL(cursor, gid, game) # Insert new pitch records into DB
+				self.umpires_to_SQL(cursor, gid, players) # Insert new umpires into DB, update game record with umpires
 
-					self.players_to_SQL(cursor, gid, players) # Insert new players into DB
-					self.teams_to_SQL(cursor, gid, game) # Insert new teams into DB
-					self.game_to_SQL(cursor, gid, game) # Insert new game record into DB
-					self.atbats_to_SQL(cursor, gid, game) # Insert new atbat records into DB
-					self.pitches_to_SQL(cursor, gid, game) # Insert new pitch records into DB
-					self.umpires_to_SQL(cursor, gid, players) # Insert new umpires into DB, update game record with umpires
-
-					#connection.close()
-					print("IMPORTED TO SQL: {}".format(gid))
+				#connection.close()
+				print("IMPORTED TO SQL: {}".format(gid))
 		except Exception as e:
 			report = "Failed to import game {}: {}".format(gid, e)
 			with open("errorlog.txt", "a") as logFile:
-				logFile.write(report + '\n')
+				logFile.write(report + '\n')	# Write to error log file
 			print(report)
 			pass
+
+	def players_to_SQL (self, cursor, gid, players):
+		""" Import player records that don't already exist, update those that had missing information. """
+
+		values = []	# List of parameters for query
+		query_with = "WITH players AS ("	# WITH Clause for query
+		for player in players.findall('./team/player'):
+			query_with += "SELECT ? AS id, ? AS first_name, ? AS last_name, ? AS bats, ? AS throws UNION "
+			values.append(player.attrib['id'])
+			values.append(player.attrib['first'])
+			values.append(player.attrib['last'])
+			if 'bats' in player.attrib:
+				values.append(player.attrib['bats'])
+			else: 
+				values.append(None)
+			if 'rl' in player.attrib:
+				values.append(player.attrib['rl'])
+			else: 
+				values.append(None)
+		query_with = query_with[:-7] + ") "
+
+		merge = query_with + "MERGE player AS t USING players AS s ON t.id = s.id "
+		merge += "WHEN NOT MATCHED BY TARGET THEN INSERT (id, first_name, last_name, bats, throws) VALUES (s.id, s.first_name, s.last_name, s.bats, s.throws) "
+		merge += "WHEN MATCHED AND ((t.first_name IS NULL AND s.first_name IS NOT NULL) OR (t.last_name IS NULL AND s.last_name IS NOT NULL) OR (t.bats IS NULL AND s.bats IS NOT NULL) OR (t.throws IS NULL AND s.throws IS NOT NULL)) THEN UPDATE SET t.first_name = s.first_name, t.last_name = s.last_name, t.bats = s.bats, t.throws = s.throws;"
+
+		cursor.execute(merge, values)
+
+	def teams_to_SQL (self, cursor, gid, games):
+		""" Import either team if it doesn't already exist. """
+
+		values = []
+		query_with = "WITH teams AS ("
+		for game in games.findall('.'):
+			query_with += "SELECT ? AS id, ? AS abbreviation, ? AS file_code, ? AS city, ? AS name UNION SELECT ? AS id, ? AS abbreviation, ? AS file_code, ? AS city, ? AS name UNION "
+			values.append(game.attrib['away_team_id'])
+			values.append(game.attrib['away_name_abbrev'])
+			values.append(game.attrib['away_file_code'])
+			values.append(game.attrib['away_team_city'])
+			values.append(game.attrib['away_team_name'])
+			values.append(game.attrib['home_team_id'])
+			values.append(game.attrib['home_name_abbrev'])
+			values.append(game.attrib['home_file_code'])
+			values.append(game.attrib['home_team_city'])
+			values.append(game.attrib['home_team_name'])
+		query_with = query_with[:-7] + ")"
+
+		merge = query_with + "MERGE team AS t USING teams AS s ON t.id = s.id "
+		merge += "WHEN NOT MATCHED BY TARGET THEN INSERT (id, abbreviation, file_code, city, name) VALUES (s.id, s.abbreviation, s.file_code, s.city, s.name) "
+		merge += "WHEN MATCHED AND ((t.abbreviation IS NULL AND s.abbreviation IS NOT NULL) OR (t.file_code IS NULL AND s.file_code IS NOT NULL) OR (t.city IS NULL AND s.city IS NOT NULL) OR (t.name IS NULL AND s.name IS NOT NULL)) THEN UPDATE SET t.abbreviation = s.abbreviation, t.file_code = s.file_code, t.city = s.city, t.name = s.name;"
+		
+		cursor.execute(merge, values)
 	
 	def pitches_to_SQL(self, cursor, gid, games):
-		# Import the individual pitches from the parsed XML
+		""" Import the individual pitches from the parsed XML. """
+
 		pitch_values = []
 		pitch_values.append([])
 
@@ -59,7 +135,7 @@ AS (
 """
 		current_parameter_count = 0
 		for atbat in games.findall('.//atbat'):
-			atbat_num = atbat.attrib['num']
+			atbat_num = atbat.attrib['num']	# Save the atbat_num
 
 			for pitch in atbat.findall('pitch'):
 				if current_parameter_count + 39 >= 2100:
@@ -85,7 +161,10 @@ AS (
 				pitch_values[len(pitch_values)-1].append(pitch.attrib['tfs_zulu'])
 				pitch_values[len(pitch_values)-1].append(pitch.attrib['x'])
 				pitch_values[len(pitch_values)-1].append(pitch.attrib['y'])
-				pitch_values[len(pitch_values)-1].append(pitch.attrib['event_num'])
+				if 'event_num' in pitch.attrib:
+					pitch_values[len(pitch_values)-1].append(pitch.attrib['event_num'])
+				else:
+					pitch_values[len(pitch_values)-1].append(None)
 				if 'sv_id' in pitch.attrib:
 					pitch_values[len(pitch_values)-1].append(pitch.attrib['sv_id'])
 				else:
@@ -327,67 +406,6 @@ AS (
 FROM games g;"""
 		cursor.execute(game_insert, game_values)
 
-	def teams_to_SQL (self, cursor, gid, games):
-		# Import either team if it doesn't already exist
-		team_values = []
-		teams_with = """WITH teams
-AS (
-"""
-		for game in games.findall('.'):
-			teams_with = teams_with + """	SELECT ? AS id, ? AS abbreviation, ? AS file_code, ? AS city, ? AS name
-	UNION
-	SELECT ? AS id, ? AS abbreviation, ? AS file_code, ? AS city, ? AS name
-	UNION
-"""
-			team_values.append(game.attrib['away_team_id'])
-			team_values.append(game.attrib['away_name_abbrev'])
-			team_values.append(game.attrib['away_file_code'])
-			team_values.append(game.attrib['away_team_city'])
-			team_values.append(game.attrib['away_team_name'])
-			team_values.append(game.attrib['home_team_id'])
-			team_values.append(game.attrib['home_name_abbrev'])
-			team_values.append(game.attrib['home_file_code'])
-			team_values.append(game.attrib['home_team_city'])
-			team_values.append(game.attrib['home_team_name'])
-		teams_with = teams_with[:-8] + """
-)
-"""
-
-		team_insert = teams_with + """INSERT INTO team (id, abbreviation, file_code, city, name)
-"""
-		team_insert = team_insert + """SELECT t.id, t.abbreviation, t.file_code, t.city, t.name
-FROM teams t 
-LEFT OUTER JOIN team tm ON t.id = tm.id
-WHERE tm.id IS NULL;"""
-		cursor.execute(team_insert, team_values)
-
-	def players_to_SQL (self, cursor, gid, players):
-		# Import any player records that don't already exist
-		player_values = []
-		players_with = """WITH players 
-AS (
-"""
-		for player in players.findall('./team/player'):
-			players_with = players_with + """	SELECT ? AS id, ? AS first_name, ? AS last_name, ? AS bats, ? AS throws
-	UNION
-"""
-			player_values.append(player.attrib['id'])
-			player_values.append(player.attrib['first'])
-			player_values.append(player.attrib['last'])
-			player_values.append(player.attrib['bats'])
-			player_values.append(player.attrib['rl'])
-		players_with = players_with[:-8] + """
-)
-"""
-		
-		player_insert = players_with + """INSERT INTO player (id, first_name, last_name, bats, throws)
-"""
-		player_insert = player_insert + """SELECT p.id, p.first_name, p.last_name, p.bats, p.throws
-FROM players p 
-LEFT OUTER JOIN player pl ON p.id = pl.id
-WHERE pl.id IS NULL;"""
-		cursor.execute(player_insert, player_values)
-
 	def umpires_to_SQL (self, cursor, gid, players):
 		# Import new umpires
 		umpires_values = []
@@ -437,24 +455,3 @@ WHERE gid = ?;"""
 		umpires_values.append(gid)
 
 		cursor.execute(umpire_update, umpires_values)
-
-class SQL_Manager(threading.Thread):
-	def __init__(self, q, SQL_pool_size, connection_string):
-		threading.Thread.__init__(self)
-		self._q = q
-		self._SQL_pool_size = SQL_pool_size
-		self._connection_string = connection_string
-
-	def run(self):
-		start_time = time.time()
-		SQL_pool = []
-		for _ in range(self._SQL_pool_size):
-			SQL_thread = Game_Importer(self._q, self._connection_string)
-			SQL_thread.start()
-			SQL_pool.append(SQL_thread)
-
-		for SQL_thread in SQL_pool:
-			SQL_thread.join()
-
-		end_time = time.time()
-		print("SQL Manager Elapsed Time: {}".format(end_time - start_time))
