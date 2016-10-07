@@ -79,7 +79,6 @@ def get_game_urls(daterange, connection_string, HTTP_pool_size):
 	HTTP_Pool.close()
 	HTTP_Pool.join()
 
-	print("Number of unchecked games is {}".format(len(game_urls)))
 	return check_game_urls(game_urls, connection_string)
 
 def main(argv):

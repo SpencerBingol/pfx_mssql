@@ -29,7 +29,7 @@ class HTTP_Manager(threading.Thread):
 			self._q.put('quit')
 
 		end_time = time.time()		# Simple timer - End time
-		print("HTTP Manager Elapsed Time: {}".format(end_time - start_time))	# Print elapsed time
+		print("HTTP Manager Elapsed Time: {0:.2f} seconds".format(end_time - start_time))	# Print elapsed time
 
 	def download_file(self, url):
 		""" Given the URL of an XML file, attempt to download using a buffer and return content. """
